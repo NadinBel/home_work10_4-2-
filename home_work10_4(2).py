@@ -18,7 +18,7 @@ class Guest(Thread):
 class Cafe:
     def __init__(self, *tables):
         self.tables = tables
-        self.queue = Queue()
+        self.queue = queue.Queue()
     def guest_arrival(self, *guests):
         self.guests = list(guests)
         [setattr(x, 'guest', y.name) for x, y in zip(self.tables, self.guests) if x.guest == None]
