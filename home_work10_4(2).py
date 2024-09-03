@@ -5,8 +5,6 @@ import random
 import time
 from queue import Queue
 
-
-
 class Table:
     def __init__(self, number, guest=None):
         self.number = number
@@ -44,10 +42,9 @@ class Cafe:
                     self.thread_guest.remove(x)
                     free_table.guest = None
                     if not self.queue.empty():
-                        wait_guest = self.queue.queue[0]
+                        wait_guest = self.queue.get()
                         free_table.guest = wait_guest.name
                         self.thread_guest.append(wait_guest)
-                        self.queue.get()
                         thguest = next(filter(lambda y: y.name == wait_guest.name, self.guests), None)
                         thguest.start()
                         print(f'{thguest.name} вышел(-ла) из очереди и сел(-а) за стол {free_table.number}')
